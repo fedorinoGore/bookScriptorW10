@@ -153,7 +153,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\CatalogTopBar.png" />
-    <Content Include="Assets\cover.jpg" />
+    <Content Include="Assets\Covers\Begbeder__Una_Selindzher_cover.jpg" />
+    <Content Include="Assets\Covers\markes_sto_let_cover.jpg" />
+    <Content Include="Assets\Covers\martin_igra_prestolov_cover.jpg" />
+    <Content Include="Assets\Covers\mazoh_venera_cover.jpg" />
+    <Content Include="Assets\Covers\melvil_moby_dick_cover.jpg" />
+    <Content Include="Assets\Covers\ustinova_sto_let_cover.jpg" />
     <Content Include="Assets\DarkGray.png" />
     <Content Include="Assets\LightGray.png" />
     <Content Include="Assets\MediumGray.png" />
@@ -287,7 +292,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Covers\" />
     <Folder Include="Books\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">

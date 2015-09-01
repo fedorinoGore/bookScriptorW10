@@ -1,0 +1,24 @@
+@font-face
+{
+ font-style: normal;
+
+ font-family: Font_11e27bdb-7025-4a77-82ae-bb9330124ae8;
+
+ src:  url(../fonts/LiberationSerif-Regular.ttf) ;
+}
+@font-face
+{
+ font-style: italic;
+
+ font-family: Font_11e27bdb-7025-4a77-82ae-bb9330124ae8;
+
+ src:  url(../fonts/LiberationSerif-Italic.ttf) ;
+}
+body
+{
+ font-family: "Font_11e27bdb-7025-4a77-82ae-bb9330124ae8";
+}
+code
+{
+ font-family: "Font_11e27bdb-7025-4a77-82ae-bb9330124ae8";
+}

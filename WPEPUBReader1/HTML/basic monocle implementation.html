@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+<title>Dummy</title>
+
+<!-- MONOCLE CORE -->
+<script type="text/javascript" src="Script/monocore.js"></script>
+
+<link rel="stylesheet" type="text/css" href="CSS/monocore.css" />
+
+<script type="text/javascript">
+	
+	var bookData = {
+		getComponents: function () {
+			return [
+				'content1.html',
+				'content2.html'
+				];
+		},
+		getContents: function () {
+			return [
+				{title: "Content Title 1", src: 'content1.html'},
+				{title: "Content Title 2", src: 'content2.html'}
+				]
+		},
+		getComponent: function (componentId) {
+			return {url:componentId};
+		},
+		getMetaData: function(key) {
+			return {
+				title: "Test document",
+				creator: "Aron Woost"
+				}[key];
+		}
+	}
+			
+	Monocle.Events.listen(
+		window,
+		'load',
+		function () {
+			window.reader = Monocle.Reader('reader', bookData);
+		}
+	);
+</script>
+
+</head>
+<body>
+	<div id="reader" style="width:300px; height:450px;">test</div>
+</body>
+</html>

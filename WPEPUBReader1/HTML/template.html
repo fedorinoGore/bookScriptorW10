@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Book title maybe?</title>
+    <meta charset="utf-8" />
+    <script src="Script/monocore.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/monocore.css"/>
+    <!--Here the magic starts-->    
+    <script type="text/javascript">
+	var bookData = {
+		getComponents: 
+		getContents:
+		getComponent: function (componentId) {
+			return {url:componentId};
+		},
+		getMetaData: function(key) {
+			return {
+				title: "Test document",
+				creator: "Aron Woost"
+				}[key];
+		}
+	}
+
+	Monocle.Events.listen(
+		window,
+		'load',
+		function () {
+			window.reader = Monocle.Reader('reader', bookData);
+		}
+	);
+    </script>
+</head>
+<body>
+    <div id="reader" style="width:300px; height:450px;">Test drive 522 chapters</div>
+</body>
+</html>

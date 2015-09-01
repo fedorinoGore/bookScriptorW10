@@ -6,6 +6,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.zip
+WPEPUBReader1.zip
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

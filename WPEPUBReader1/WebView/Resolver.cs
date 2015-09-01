@@ -107,7 +107,7 @@ namespace WPEPUBReader1.WebView
 
     public sealed class MemoryStreamUriWinRTResolver : IUriToStreamResolver
     {
-        private string[] locallyHostedFiles = new string[]{ "monocore.css", "monocore.js", "monoctrl.css", "monoctrl.js", "index.html" };
+        private string[] locallyHostedFiles = new string[]{ "monocore.css", "monocore.js", "monoctrl.css", "monoctrl.js"};
         /// <summary>
         /// The entry point for resolving a Uri to a stream.
         /// </summary>
@@ -127,7 +127,7 @@ namespace WPEPUBReader1.WebView
             }
 
             // Because of the signature of the this method, it can't use await, so we 
-            // call into a seperate helper method that can use the C# await pattern.
+            // call into a separate helper method that can use the C# await pattern.
             return getContent(path).AsAsyncOperation();
         }
 
@@ -150,7 +150,7 @@ namespace WPEPUBReader1.WebView
             // Split the path into an array of nodes
             string[] nodes = path.Split('/');
 
-            // If we sure that file is hosted localy then we walk the nodes of the path checking against the filesystem along the way
+            // If we sure that file is hosted locally then we walk the nodes of the path checking against the filesystem along the way
             if (locallyHosted(nodes))
             {
                 for (int i = 0; i < nodes.Length; i++)
@@ -173,7 +173,7 @@ namespace WPEPUBReader1.WebView
                             IRandomAccessStream stream = await f.OpenAsync(FileAccessMode.Read);
                             if (System.Diagnostics.Debugger.IsAttached)
                             {
-                                System.Diagnostics.Debug.WriteLine($"Stream loaded: {nodes[nodes.Length-1]} : {stream.Size}byte");
+                                System.Diagnostics.Debug.WriteLine($"Stream loaded: {nodes[nodes.Length-1]} : {stream.Size}bytes");
                             }
                             return stream;
                         }
@@ -201,6 +201,7 @@ namespace WPEPUBReader1.WebView
             switch (fileExtension)
             {
                 case ".xhtml":
+                case ".html":
                     if (ItemPage.currentEpubBook.Content.Html.ContainsKey(fileName))
                     {
                         content = ItemPage.currentEpubBook.Content.Html[fileName].Content;
@@ -253,7 +254,7 @@ namespace WPEPUBReader1.WebView
                     {
                         System.Diagnostics.Debug.WriteLine($"Trying to resolve not supported file type: {fileExtension}");
                     }
-                    return null;
+                    return new InMemoryRandomAccessStream();
             }
         }
 

@@ -217,7 +217,7 @@ namespace WPEPUBReader1
 
             // CONTENT
 
-            // Book's content (HTML files, stlylesheets, images, fonts, etc.)
+            // Book's content (HTML files, style-sheets, images, fonts, etc.)
             EpubContent bookContent = currentEpubBook.Content;
 
 
@@ -243,10 +243,7 @@ namespace WPEPUBReader1
 
             // All CSS files in the book (file name is the key)
             Dictionary<string, EpubTextContentFile> cssFiles = bookContent.Css;
-
-            
-
-            // All CSS content in the book
+               // All CSS content in the book
             //foreach (EpubTextContentFile cssFile in cssFiles.Values)
             //{
             //    string cssContent = cssFile.Content;
@@ -257,7 +254,7 @@ namespace WPEPUBReader1
             // Dictionary<string, EpubByteContentFile> fonts = bookContent.Fonts;
 
             // All files in the book (including HTML, CSS, images, fonts, and other types of files)
-            //TO-DO looks like this dcitionary not working well at the moment, have to trace
+            //TO-DO looks like this dictionary not working well at the moment, have to trace
             //Dictionary<string, EpubContentFile> allFiles = bookContent.AllFiles;
 
             //To-DO:
@@ -276,8 +273,17 @@ namespace WPEPUBReader1
             //    htmlItem.Value.Content = injectedItem;
             //}
 
-            // --- Организуем навигацию из потока --------------------
+            IndexFileSceleton index = new IndexFileSceleton();
+            index.author = currentEpubBook.Author;
+            index.title = currentEpubBook.Title;
+            index.height = (int)bookReaderWebViewControl.ActualHeight;
+            index.chapters = currentEpubBook.Chapters;
+            index.xhtmlFiles = currentEpubBook.Content.Html;
+
+            // --- Streaming HTML+JS content directly from the memory ---
             //Uri url = bookReaderWebViewControl.BuildLocalStreamUri("MemoryTag", "section4.xhtml");
+            CreateIndex();
+
             Uri url = bookReaderWebViewControl.BuildLocalStreamUri("MemoryTag", "index.html");
             bookReaderWebViewControl.NavigateToLocalStreamUri(url, myMemoryResolver);
 
@@ -309,8 +315,26 @@ namespace WPEPUBReader1
             //}
 
         }
+        /// <summary>
+        /// Creating index.html needed to create a JS+HTML book layout from all files included in the book.
+        /// After this we could use index.html as an entry point for rendering the book in WebView
+        /// </summary>
+        private void CreateIndex()
+        {
+            IndexFileMonocleGenerator _index = new IndexFileMonocleGenerator(currentEpubBook.Title, currentEpubBook.Author, 530);
+            EpubTextContentFile _result = _index.CreateIndex(currentEpubBook.Chapters, currentEpubBook.Content.Html);
+            try
+            {
+                currentEpubBook.Content.Html.Add("index.html", _result);
+            }
+            catch (ArgumentException)
+            {
+                currentEpubBook.Content.Html["index.html"] = _result;
+                Debug.WriteLine($"\n---------------------------\nAn element with Key = \"index.html\" UPDATED.\n");
+            }
+        }
 
-        // Temporary function to experiemnt with creating image control run-time
+        // Temporary function to experiment with creating image control run-time
         private void ShowCoverImage(BitmapImage coverImage)
         {
             Image coverImageControl = new Image() { Width = 320, Height = 480, Stretch = Stretch.Uniform };
@@ -360,16 +384,7 @@ namespace WPEPUBReader1
 
         private void Test_Click(object sender, RoutedEventArgs e)
         {
-            IndexFileMonocleGenerator _index = new IndexFileMonocleGenerator(currentEpubBook.Title, currentEpubBook.Author, 530);
-            EpubTextContentFile _result = _index.CreateIndex(currentEpubBook.Chapters, currentEpubBook.Content.Html);
-            try {
-                currentEpubBook.Content.Html.Add("index.html", _result);
-            } catch (ArgumentException)
-            {
-                currentEpubBook.Content.Html["index.html"] = _result;
-                Debug.WriteLine($"\n---------------------------\nAn element with Key = \"index.html\" UPDATED.\n");
-            }
-
+           
         }
     }
 }

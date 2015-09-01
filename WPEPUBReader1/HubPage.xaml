@@ -12,11 +12,18 @@
 
     <Page.Resources>
         <DataTemplate x:Key="HubSectionHeaderTemplate">
-            <TextBlock Margin="0,0,0,-10" Text="{Binding}" FontSize="19" FontFamily="Open Sans" FontWeight="Light" FontStretch="ExtraExpanded" Foreground="#FF30323E">
-                <!--<TextBlock.RenderTransform>
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" Width="380">
+                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+            <TextBlock Margin="0,0,0,0" Text="{Binding}" FontSize="19" FontFamily="Open Sans" FontWeight="Light" FontStretch="ExtraExpanded" Foreground="#FF30323E" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <TextBlock.RenderTransform>
                     <CompositeTransform/>
-                </TextBlock.RenderTransform>-->
-            </TextBlock>
+                </TextBlock.RenderTransform>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Margin="0,0,0,0" HorizontalAlignment="Right" Orientation="Horizontal" Width="35">
+                    <!--<TextBlock HorizontalAlignment="Right" Text="Все >" FontSize="19" FontFamily="Open Sans" FontWeight="Light" FontStretch="ExtraExpanded" Foreground="#FF30323E" VerticalAlignment="Top"/>-->
+                </StackPanel>
+            </StackPanel>
         </DataTemplate>
 
         <!-- Grid-appropriate item template as seen in section 2 -->
@@ -31,7 +38,7 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Margin="0,-25,0,0">
@@ -45,11 +52,11 @@
             </Button>
         </StackPanel>
         
-        <Hub x:Name="Hub" x:Uid="Hub" Grid.Row="1" Background="White" Margin="0,25,0,0"  VerticalContentAlignment="Top" VerticalAlignment="Top">
+        <Hub x:Name="Hub" x:Uid="Hub" Grid.Row="1" Background="White" Margin="0,25,0,0"  VerticalContentAlignment="Top" VerticalAlignment="Top" BorderBrush="Crimson" BorderThickness="2">
             <HubSection x:Uid="HubSection2" Header="Популярные книги" Width="Auto"
-                         DataContext="{Binding Groups[0]}" HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}" >
+                         DataContext="{Binding Groups[0]}" HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}" VerticalAlignment="Top">
                 <DataTemplate>
-                    <GridView
+                    <GridView BorderBrush="Aquamarine" BorderThickness="2" VerticalAlignment="Top"
                         Margin="0,-10,0,0"
                         ItemsSource="{Binding Items}"
                         AutomationProperties.AutomationId="ItemGridView"
@@ -61,7 +68,7 @@
                         ContinuumNavigationTransitionInfo.ExitElementContainer="True">
                         <GridView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <ItemsWrapGrid />
+                                <ItemsWrapGrid VerticalAlignment="Top" Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
                         </GridView.ItemsPanel>
                     </GridView>

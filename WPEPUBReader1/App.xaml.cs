@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI;
 
 // The Hub Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -49,7 +50,7 @@ namespace WPEPUBReader1
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                this.DebugSettings.EnableFrameRateCounter = true;
+                this.DebugSettings.EnableFrameRateCounter = false;
             }
 #endif
 
@@ -103,6 +104,12 @@ namespace WPEPUBReader1
 
                 rootFrame.ContentTransitions = null;
                 rootFrame.Navigated += this.RootFrame_FirstNavigated;
+                
+                //Trying to play with status bar colors
+                var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                //statusBar.BackgroundColor = Colors.White;
+                statusBar.ForegroundColor = Colors.White;
+                statusBar.BackgroundOpacity = 0;
 
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation

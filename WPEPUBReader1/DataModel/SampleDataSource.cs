@@ -23,9 +23,10 @@ namespace WPEPUBReader1.Data
     /// </summary>
     public class SampleDataItem
     {
-        public SampleDataItem(String uniqueId, String title, String subtitle, String imagePath, String description, String content)
+        public SampleDataItem(String uniqueId, string file, string title, String subtitle, String imagePath, String description, String content)
         {
             this.UniqueId = uniqueId;
+            this.File = file;
             this.Title = title;
             this.Subtitle = subtitle;
             this.Description = description;
@@ -34,6 +35,7 @@ namespace WPEPUBReader1.Data
         }
 
         public string UniqueId { get; private set; }
+        public string File { get; private set; }
         public string Title { get; private set; }
         public string Subtitle { get; private set; }
         public string Description { get; private set; }
@@ -140,6 +142,7 @@ namespace WPEPUBReader1.Data
                 {
                     JsonObject itemObject = itemValue.GetObject();
                     group.Items.Add(new SampleDataItem(itemObject["UniqueId"].GetString(),
+                                                       itemObject["File"].GetString(),
                                                        itemObject["Title"].GetString(),
                                                        itemObject["Subtitle"].GetString(),
                                                        itemObject["ImagePath"].GetString(),

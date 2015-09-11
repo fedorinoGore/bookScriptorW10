@@ -82,10 +82,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BlankPage1.xaml.cs">
+      <DependentUpon>BlankPage1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Common\NavigationHelper.cs" />
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="DataModel\API.cs" />
     <Compile Include="DataModel\SampleDataSource.cs" />
     <Compile Include="EPUB\Entities\EpubByteContentFile.cs" />
     <Compile Include="EPUB\Entities\EpubChapter.cs" />
@@ -153,13 +157,107 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\CatalogTopBar.png" />
-    <Content Include="Assets\Covers\Begbeder__Una_Selindzher_cover.jpg" />
-    <Content Include="Assets\Covers\markes_sto_let_cover.jpg" />
-    <Content Include="Assets\Covers\martin_igra_prestolov_cover.jpg" />
-    <Content Include="Assets\Covers\mazoh_venera_cover.jpg" />
-    <Content Include="Assets\Covers\melvil_moby_dick_cover.jpg" />
-    <Content Include="Assets\Covers\ustinova_sto_let_cover.jpg" />
+    <Content Include="Assets\Covers\Begbeder__Una_Selindzher_cover.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Covers\markes_sto_let_cover.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Covers\martin_igra_prestolov_cover.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Covers\mazoh_venera_cover.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Covers\melvil_moby_dick_cover.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Covers\ustinova_sto_let_cover.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\DarkGray.png" />
+    <Content Include="Assets\ICONS\Book_audio.png" />
+    <Content Include="Assets\ICONS\Book_audio_book.png" />
+    <Content Include="Assets\ICONS\Book_book.png" />
+    <Content Include="Assets\ICONS\Book_readed_book.png" />
+    <Content Include="Assets\ICONS\Close_button_24.png" />
+    <Content Include="Assets\ICONS\drawable-hdpi\ic_action_font_setting_off.png" />
+    <Content Include="Assets\ICONS\drawable-hdpi\ic_action_font_setting_on.png" />
+    <Content Include="Assets\ICONS\drawable-hdpi\ic_bookmark_off.png" />
+    <Content Include="Assets\ICONS\drawable-hdpi\ic_bookmark_on.png" />
+    <Content Include="Assets\ICONS\drawable-hdpi\ic_table_of_content_off.png" />
+    <Content Include="Assets\ICONS\drawable-hdpi\ic_table_of_content_on.png" />
+    <Content Include="Assets\ICONS\drawable-mdpi\ic_action_font_setting_off.png" />
+    <Content Include="Assets\ICONS\drawable-mdpi\ic_action_font_setting_on.png" />
+    <Content Include="Assets\ICONS\drawable-mdpi\ic_bookmark_off.png" />
+    <Content Include="Assets\ICONS\drawable-mdpi\ic_bookmark_on.png" />
+    <Content Include="Assets\ICONS\drawable-mdpi\ic_table_of_content_off.png" />
+    <Content Include="Assets\ICONS\drawable-mdpi\ic_table_of_content_on.png" />
+    <Content Include="Assets\ICONS\drawable-xhdpi\ic_action_font_setting_off.png" />
+    <Content Include="Assets\ICONS\drawable-xhdpi\ic_action_font_setting_on.png" />
+    <Content Include="Assets\ICONS\drawable-xhdpi\ic_bookmark_off.png" />
+    <Content Include="Assets\ICONS\drawable-xhdpi\ic_bookmark_on.png" />
+    <Content Include="Assets\ICONS\drawable-xhdpi\ic_bookmark_table_of_content_off.png" />
+    <Content Include="Assets\ICONS\drawable-xhdpi\ic_table_of_content_on.png" />
+    <Content Include="Assets\ICONS\drawable-xxhdpi\icttable_of_content_off.png" />
+    <Content Include="Assets\ICONS\drawable-xxhdpi\ic_action_font_setting_off.png" />
+    <Content Include="Assets\ICONS\drawable-xxhdpi\ic_action_font_setting_on.png" />
+    <Content Include="Assets\ICONS\drawable-xxhdpi\ic_bookmark_off.png" />
+    <Content Include="Assets\ICONS\drawable-xxhdpi\ic_bookmark_on.png" />
+    <Content Include="Assets\ICONS\drawable-xxhdpi\ic_table_of_content_on.png" />
+    <Content Include="Assets\ICONS\drawable-xxxhdpi\ic_action_font_setting_off.png" />
+    <Content Include="Assets\ICONS\drawable-xxxhdpi\ic_action_font_setting_on.png" />
+    <Content Include="Assets\ICONS\drawable-xxxhdpi\ic_bookmark_off.png" />
+    <Content Include="Assets\ICONS\drawable-xxxhdpi\ic_bookmark_on.png" />
+    <Content Include="Assets\ICONS\drawable-xxxhdpi\ic_table_of_content_off.png" />
+    <Content Include="Assets\ICONS\drawable-xxxhdpi\ic_table_of_content_on.png" />
+    <Content Include="Assets\ICONS\edition_32.png" />
+    <Content Include="Assets\ICONS\NavBar\NavBar_actions.png" />
+    <Content Include="Assets\ICONS\NavBar\NavBar_arrow_down.png" />
+    <Content Include="Assets\ICONS\NavBar\NavBar_arrow_right.png" />
+    <Content Include="Assets\ICONS\NavBar\NavBar_arrow_up.png" />
+    <Content Include="Assets\ICONS\NavBar\NavBar_hamburg_menu.png" />
+    <Content Include="Assets\ICONS\NavBar\NavBar_loope.png" />
+    <Content Include="Assets\ICONS\NavBar\NavBar_more.png" />
+    <Content Include="Assets\ICONS\Note.png" />
+    <Content Include="Assets\ICONS\Note_arrow.png" />
+    <Content Include="Assets\ICONS\Note_arrow_hover.png" />
+    <Content Include="Assets\ICONS\Note_delete.png" />
+    <Content Include="Assets\ICONS\Note_delete_hover.png" />
+    <Content Include="Assets\ICONS\Note_edit.png" />
+    <Content Include="Assets\ICONS\Note_edit_hover.png" />
+    <Content Include="Assets\ICONS\Note_share.png" />
+    <Content Include="Assets\ICONS\Note_share_hover.png" />
+    <Content Include="Assets\ICONS\noun_23695_cc.png" />
+    <Content Include="Assets\ICONS\Quote.png" />
+    <Content Include="Assets\ICONS\Reader_content.png" />
+    <Content Include="Assets\ICONS\Reader_content_hover.png" />
+    <Content Include="Assets\ICONS\Reader_copy.png" />
+    <Content Include="Assets\ICONS\Reader_edit.png" />
+    <Content Include="Assets\ICONS\Reader_font.png" />
+    <Content Include="Assets\ICONS\Reader_font_hover.png" />
+    <Content Include="Assets\ICONS\Reader_loope.png" />
+    <Content Include="Assets\ICONS\Reader_loope_hover.png" />
+    <Content Include="Assets\ICONS\Reader_quotes.png" />
+    <Content Include="Assets\ICONS\Reader_quotes_hover.png" />
+    <Content Include="Assets\ICONS\Reader_z.png" />
+    <Content Include="Assets\ICONS\Search_cancel.png" />
+    <Content Include="Assets\ICONS\Search_loope.png" />
+    <Content Include="Assets\ICONS\seekbar\seekbar_sel_track.9.png" />
+    <Content Include="Assets\ICONS\seekbar\seekbar_thumb.png" />
+    <Content Include="Assets\ICONS\seekbar\seekbar_track.9.png" />
+    <Content Include="Assets\ICONS\Text_edit_01.png" />
+    <Content Include="Assets\ICONS\Text_edit_01_hover.png" />
+    <Content Include="Assets\ICONS\Text_edit_02.png" />
+    <Content Include="Assets\ICONS\Text_edit_02_hover.png" />
+    <Content Include="Assets\ICONS\Text_edit_03.png" />
+    <Content Include="Assets\ICONS\Text_edit_03_hover.png" />
+    <Content Include="Assets\ICONS\Text_minus.png" />
+    <Content Include="Assets\ICONS\Text_plus.png" />
+    <Content Include="Assets\ICONS\Topmenu_list.png" />
+    <Content Include="Assets\ICONS\Topmenu_list_hover.png" />
+    <Content Include="Assets\ICONS\Topmenu_tile.png" />
+    <Content Include="Assets\ICONS\Topmenu_tile_hover.png" />
     <Content Include="Assets\LightGray.png" />
     <Content Include="Assets\MediumGray.png" />
     <Content Include="Assets\Logo.scale-240.png" />
@@ -196,6 +294,10 @@
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="BlankPage1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HubPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -287,13 +389,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Test.epub">
+    <Content Include="Books\Test.epub">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Books\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

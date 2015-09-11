@@ -71,7 +71,7 @@ namespace WPEPUBReader1.EPUB.Utils
                    "}\n" +
                  "};\n" +
                 "Monocle.Events.listen(window, 'load', function(){" +
-                "var readerOptions = {}; readerOptions.panels = Monocle.Panels.Magic; " +
+                "var readerOptions = {}; readerOptions.panels = Monocle.Panels.IMode; " +
                 "window.reader = Monocle.Reader('rdr', bookData, readerOptions, function(rdr) {"+
                 " var scrubber = new Monocle.Controls.Scrubber(rdr); rdr.addControl(scrubber, 'standard', { container: 'scrubber' });\n"+
                 "var stencil = new Monocle.Controls.Stencil(rdr); rdr.addControl(stencil); "+

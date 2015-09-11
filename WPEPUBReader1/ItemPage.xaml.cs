@@ -193,9 +193,9 @@ namespace WPEPUBReader1
             progressbar.Text = "Загрузка книги";
             await progressbar.ShowAsync();
             //bookLoadingProgressBar.Visibility = Visibility.Visible;
-
+            var bookItem = (SampleDataItem)this.DefaultViewModel["Item"];
             // Opening a book
-            currentEpubBook = await EpubReader.OpenBookAsync("test.epub");
+            currentEpubBook = await EpubReader.OpenBookAsync(bookItem.File);
 
             if (currentEpubBook != null)
             {

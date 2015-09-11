@@ -1,0 +1,67 @@
+﻿<Page
+    x:Name="SandBox"
+    x:Class="WPEPUBReader1.BlankPage1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WPEPUBReader1"
+    xmlns:data="using:WPEPUBReader1.Data"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    d:DataContext="{Binding Groups[0], Source={d:DesignData Source=/DataModel/SampleData.json, Type=data:SampleDataSource}}"
+    Background="white">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="0,-27,0,0">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="Assets/CatalogTopBar.png" Stretch="UniformToFill"/>
+            </StackPanel.Background>
+            <Button x:Name="searchButton"  Margin="0,25,-30,0" Height="15" Width="10" Content="" HorizontalAlignment="Right" VerticalAlignment="Center" BorderThickness="0" IsHoldingEnabled="False" ManipulationMode="None" >
+                <Button.Background>
+                    <ImageBrush ImageSource="Assets/noun_23695_cc.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+        </StackPanel>
+        <!--<TextBlock Text="{Binding Title}" Margin="10,10,-10,-28" Style="{ThemeResource HeaderTextBlockStyle}" TextWrapping="NoWrap" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}" FontFamily="SansPt" Foreground="#FF30323E" Grid.Row="1"/>-->
+        <Grid Grid.Row="1" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Margin="0,0,0,0" Orientation="Vertical">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Margin="15,0,0,0" FontSize="24" FontFamily="SansPT" FontWeight="Light" Foreground="#FF30323E" VerticalAlignment="Center" HorizontalAlignment="Left" CharacterSpacing="10" RequestedTheme="Light" Text="Популярные книги">
+                    </TextBlock>
+                    <Button Grid.Column="2" HorizontalAlignment="Right" Content="Все &gt;" BorderThickness="0" Margin="0,0,0,0" Foreground="#FF747474" CharacterSpacing="10" Width="25" FontWeight="Light">
+                    </Button>
+                </Grid>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="1">
+                <ListView 
+                    x:Name="itemListView"
+                    ItemsSource="{Binding Items}" IsItemClickEnabled="True" SelectionMode="None"
+                    Margin="15,0,0,0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:Name="BookCoverList">
+                            <Grid Margin="0,0,15,15" Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" VerticalAlignment="Top">
+                                <Image Source="{Binding ImagePath}" Stretch="UniformToFill"  Height="165" Width="115"/>
+                                <!--<TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="9.5,0,0,6.5" Style="{ThemeResource BaseTextBlockStyle}"/>-->
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Page>

@@ -179,23 +179,25 @@ namespace WPEPUBReader1
 
         #endregion
 
-        
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            //Init epub object. 
+            string bookFolderName = "Books";
+            // Getting the selected Book Item
+            var bookItem = (SampleDataItem)this.DefaultViewModel["Item"];
 
-            //bool fileExist = await EpubReader.DoesFileExistAsync(Windows.ApplicationModel.Package.Current.InstalledLocation, "test.epub");
-            //if (!fileExist)
-            //    throw new Exception(string.Format("File test.epub not found, bitch"));
-
+            StorageFolder bookFolder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(bookFolderName);
+           
+            bool fileExist = await EpubReader.DoesFileExistAsync(bookFolder, bookItem.File);
+            if (!fileExist)
+                throw new Exception($"File {bookItem.File} not found");
+            
             progressbar.Text = "Загрузка книги";
             await progressbar.ShowAsync();
-            //bookLoadingProgressBar.Visibility = Visibility.Visible;
-            var bookItem = (SampleDataItem)this.DefaultViewModel["Item"];
+            
             // Opening a book
-            currentEpubBook = await EpubReader.OpenBookAsync(bookItem.File);
+            currentEpubBook = await EpubReader.OpenBookAsync($"{bookFolderName}\\{bookItem.File}");
 
             if (currentEpubBook != null)
             {

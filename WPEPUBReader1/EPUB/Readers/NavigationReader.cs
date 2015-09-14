@@ -46,7 +46,8 @@ namespace VersFx.Formats.Text.Epub.Readers
                 {
                     result.Head = await ReadNavigationHeadAsync(xmlReader);
                     result.DocTitle = await ReadNavigationDocTitleAsync(xmlReader);
-                    result.DocAuthors = await ReadNavigationAuthorsAsync(xmlReader);
+                    //Deprecated as not much EPUB using it, may be restored after rewriting all parsing code with LINQ2XML 
+                    //result.DocAuthors = await ReadNavigationAuthorsAsync(xmlReader);
                     result.NavMap = await ReadNavigationMapAsync(xmlReader);
                     result.NavLists = new List<EpubNavigationList>(); //Empty, because not implemented
                     result.PageList = new EpubNavigationPageList(); //Empty, because not implemented
@@ -130,6 +131,7 @@ namespace VersFx.Formats.Text.Epub.Readers
                     subReader.Dispose();
 
                 }
+                if (reader.NodeType == XmlNodeType.EndElement && reader.LocalName == "navMap") break;
             }
             return result;
         }
@@ -200,8 +202,8 @@ namespace VersFx.Formats.Text.Epub.Readers
                 {
                     navigationLabelText = reader.ReadElementContentAsString();
                 }
-
-            } while (await reader.ReadAsync() && !(reader.NodeType == XmlNodeType.EndElement && reader.LocalName.ToLowerInvariant() == "navlabel"));
+                if (reader.NodeType == XmlNodeType.EndElement && reader.LocalName.ToLowerInvariant() == "navlabel") break;
+            } while (await reader.ReadAsync());
 
             if (string.IsNullOrEmpty(navigationLabelText))
                 throw new Exception("Incorrect EPUB navigation label: label text element is missing");
@@ -264,12 +266,13 @@ namespace VersFx.Formats.Text.Epub.Readers
 
             if (!titleFound)
                 throw new Exception("EPUB parsing error: title section not found in the .toc file.");
-            while (await reader.ReadAsync() && !(reader.NodeType == XmlNodeType.EndElement && reader.LocalName == "docTitle"))
+            while (await reader.ReadAsync())
             {
                 if (reader.LocalName.ToLowerInvariant() == "text")
                 {
                     result.Add(reader.ReadElementContentAsString());
                 }
+                if(reader.NodeType == XmlNodeType.EndElement && reader.LocalName.ToLowerInvariant() == "doctitle") break;
             }
             return result;
         }

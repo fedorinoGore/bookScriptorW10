@@ -22,7 +22,7 @@ namespace VersFx.Formats.Text.Epub
     {
        public static async Task<bool> DoesFileExistAsync(StorageFolder folder, string filename)
         {
-            var folders = (await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFoldersAsync()).To‌​List();
+           // var folders = (await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFoldersAsync()).To‌​List();
             try
             {
                 await folder.GetFileAsync(filename);
